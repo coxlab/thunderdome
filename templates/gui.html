@@ -1,9 +1,14 @@
 <html>
+<head>
+<script src='http://codeorigin.jquery.com/jquery-2.0.3.min.js'></script>
+</head>
 
 <body>
 
 
 <h3>{{ blah }}</h3>
+
+<h3 id="theNumber"></h3>
 
 <form method="PUT" action="/open1">
 	<button name="open1" type="submit">blah</button>
@@ -13,6 +18,27 @@
 <form method="PUT" action="/open2">
 	<button name="open2" type="submit">blah</button>
 </form>
+
+
+
+<script>
+
+	tmp = 4;
+
+	function update(){
+		console.log('hello');
+		$.ajax({
+			method: 'GET',
+			url: '/thenumber',
+			success: function(v){
+				$('#theNumber').text(v);
+			}
+		})
+	}
+
+	setInterval(update, 100)
+
+</script>
 
 </body>
 </html>

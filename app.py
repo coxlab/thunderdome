@@ -30,6 +30,14 @@ def open1():
 def open2():
     return render_template('gui.html', blah="blah")
 
+global a
+a = 4
+
+@app.route('/thenumber')
+def thenumber():
+    global a
+    a += 500
+    return str(a)
 
 
 # -------------------------------------------------------
