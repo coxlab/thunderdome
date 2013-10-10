@@ -23,7 +23,12 @@ def index():
 
 @app.route('/open1')
 def open1():
-    return "open the bomb bay doors!"
+    return render_template('gui.html', blah="open the bomb bay doors!")
+
+
+@app.route('/open2')
+def open2():
+    return render_template('gui.html', blah="blah")
 
 
 
