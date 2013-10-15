@@ -1,0 +1,185 @@
+<html>
+<style>
+div {
+    /* inset shadow for visual aid only: allow to easily see the div boundaries */
+    box-shadow: 0 0 1px black inset;
+}
+
+#contentBox {
+    margin: 0 auto;
+    width: 70%;
+}
+
+#contentBox .column {
+    float: left;
+    margin: 0;
+    width: 33%;
+
+#contentBox .row {
+    float: bottom;
+    margin: 0;
+
+}
+}
+</style>
+
+<head>
+<script src='http://codeorigin.jquery.com/jquery-2.0.3.min.js'></script>
+</head>
+
+<body>
+
+
+<div id="contentBox">
+    <div class="column">
+        <center>        
+            <h3 id="state1"></h3>
+            <h3 id="open_close1"></h3>
+            <h3 id="position1"></h3>
+    
+            <form method="PUT" action="/door1">
+            	<button name="door1" type="submit">Door 1</button>
+            </form>
+        </center>
+    </div>
+
+    <div class="column">
+        <center>
+            <h3 id="state2"></h3>
+            <h3 id="open_close2"></h3>
+            <h3 id="position2"></h3>
+    
+            <form method="PUT" action="/door2">
+            	<button name="door2" type="submit">Door 2</button>
+            </form>
+        </center>
+    </div>
+
+    <div class="column">
+        <center>
+            <h3 id="state3"></h3>
+            <h3 id="open_close3"></h3>
+            <h3 id="position3"></h3>
+    
+            <form method="PUT" action="/door3">
+            	<button name="door3" type="submit">Door 3</button>
+            </form>
+        </center>
+    </div>
+
+    <div class="row">
+        <center><span style="display: inline;">        
+            <form method="PUT" action="/alldoors">
+                <input name="OmniDoor" type="submit" value="Omnidoor">
+            </form>
+            
+             <form method="PUT" action="/alldoors_open">
+                <input name="OmniDoor1" type="submit" value="Open All Doors">
+            </form>
+            
+            <form method="PUT" action="/alldoors_close">
+                <input name="OmniDoor" type="submit" value="Close All Doors">
+            </form>
+             <form method="PUT" action="/shutdown">
+                <input name="Shutdown" type="submit" value="Shut down">
+            </form>
+        </center></span>
+    </div>  
+  
+</div>
+
+
+
+<script>
+
+
+
+	function update(){
+		$.ajax({
+			method: 'GET',
+			url: '/door_state1',
+			success: function(v){
+				$('#state1').text(v);
+			}
+		})
+            	$.ajax({
+			method: 'GET',
+			url: '/door_state2',
+			success: function(v){
+				$('#state2').text(v);
+			}
+		})
+            $.ajax({
+			method: 'GET',
+			url: '/door_state3',
+			success: function(v){
+				$('#state3').text(v);
+			}
+		})        
+            	$.ajax({
+			method: 'GET',
+			url: '/door_state2',
+			success: function(v){
+				$('#state2').text(v);
+			}
+		})
+
+            	$.ajax({
+			method: 'GET',
+			url: '/door_open_close1',
+			success: function(v){
+				$('#open_close1').text(v);
+			}
+		})
+            	$.ajax({
+			method: 'GET',
+			url: '/door_open_close2',
+			success: function(v){
+				$('#open_close2').text(v);
+			}
+		})
+            	$.ajax({
+			method: 'GET',
+			url: '/door_open_close3',
+			success: function(v){
+				$('#open_close3').text(v);
+			}
+		})
+
+            	$.ajax({
+			method: 'GET',
+			url: '/door_posit1',
+			success: function(v){
+				$('#position1').text(v);
+			}
+		})
+            	$.ajax({
+			method: 'GET',
+			url: '/door_posit2',
+			success: function(v){
+				$('#position2').text(v);
+			}
+		})
+            	$.ajax({
+			method: 'GET',
+			url: '/door_posit3',
+			success: function(v){
+				$('#position3').text(v);
+			}
+		})
+
+}
+
+	setInterval(update, 100)
+
+
+            
+
+
+
+
+</script>
+
+</body>
+</html>
+</html>
