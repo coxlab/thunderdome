@@ -182,15 +182,18 @@ def Dooropenclose3():
 #Door position 
 @app.route('/door_posit1')
 def doorposition1():
-    return str(advancedServo.getPosition(0))
+	if advancedServo.getEngaged(0) == True and advancedServo.getEngaged(1) == True:
+		return str(advancedServo.getPosition(0))
 
 @app.route('/door_posit2')
 def doorposition2():
-    return str(advancedServo.getPosition(2))
+    if advancedServo.getEngaged(2) == True and advancedServo.getEngaged(3) == True:
+		return str(advancedServo.getPosition(2))
 
 @app.route('/door_posit3')
 def doorposition3():
-    return str(advancedServo.getPosition(4))
+    if advancedServo.getEngaged(4) == True and advancedServo.getEngaged(5) == True:
+		return str(advancedServo.getPosition(4))
 # -------------------------------------------------------
 # Debug
 # -------------------------------------------------------
