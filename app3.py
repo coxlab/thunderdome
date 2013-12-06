@@ -31,18 +31,20 @@ def Attached(e):
     print("Servo %i Attached!" % (attached.getSerialNum()))
 
 
-advancedServo.openRemoteIP('127.0.0.1', 5001)
+advancedServo.openRemoteIP('10.251.77.216',5001, 303604)
 
 #attach phidget, engage motors, and set them to default position 
 advancedServo.waitForAttach(100000)
 for k in range(0,8):
     advancedServo.setServoType(k, ServoTypes.PHIDGET_SERVO_HITEC_HS422)
     advancedServo.setEngaged(k, True)
+    sleep(.2)
     advancedServo.setVelocityLimit(k, 100.00)
     if k % 2 == 0:
 		advancedServo.setPosition(k,0)
     elif k % 2 == 1:
 		advancedServo.setPosition(k,180)
+    
 
     
 
@@ -126,8 +128,11 @@ def omnidoor_c():
 @app.route('/shutdown')
 def shutdown():
     for k in range(0,8):
-        advancedServo.setEngaged(k, False)    
-        return render_template('gui2.html')
+        advancedServo.setEngaged(k, False)
+    sys.exit()
+    return render_template('gui2.html')
+
+
 #Door States    
 @app.route('/door_state1')
 def DoorState1():
@@ -185,15 +190,23 @@ def doorposition1():
 	if advancedServo.getEngaged(0) == True and advancedServo.getEngaged(1) == True:
 		return str(advancedServo.getPosition(0))
 
+
+
+
 @app.route('/door_posit2')
 def doorposition2():
     if advancedServo.getEngaged(2) == True and advancedServo.getEngaged(3) == True:
 		return str(advancedServo.getPosition(2))
 
+
+
 @app.route('/door_posit3')
 def doorposition3():
     if advancedServo.getEngaged(4) == True and advancedServo.getEngaged(5) == True:
 		return str(advancedServo.getPosition(4))
+
+
+
 # -------------------------------------------------------
 # Debug
 # -------------------------------------------------------
