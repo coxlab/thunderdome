@@ -127,7 +127,7 @@ def omnidoor_c():
 def shutdown():
     for k in range(0,8):
         advancedServo.setEngaged(k, False)    
-        return render_template('gui2.html')
+    return render_template('gui2.html')
 #Door States    
 @app.route('/door_state1')
 def DoorState1():
